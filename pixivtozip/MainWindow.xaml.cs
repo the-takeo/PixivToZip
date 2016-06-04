@@ -31,6 +31,11 @@ namespace PixivToZip
 
             viewLogOut();
             loadSetting();
+
+            if (checkLogInInfo())
+            {
+                logIn();
+            }
         }
 
         private void viewLogOut()
@@ -92,7 +97,18 @@ namespace PixivToZip
             cbZip.IsChecked = PixivToZip.Properties.Settings.Default.IsZip;
         }
 
+        private bool checkLogInInfo()
+        {
+            return string.IsNullOrEmpty(tbUserId.Text) == false
+                && string.IsNullOrEmpty(tbPassword.Text) == false;
+        }
+
         private async void btnLogIn_Click(object sender, RoutedEventArgs e)
+        {
+            await logIn();
+        }
+
+        private async Task logIn()
         {
             pixivHelper = new PixivHelper();
             bool result = await pixivHelper.logIn(tbUserId.Text, tbPassword.Text);
