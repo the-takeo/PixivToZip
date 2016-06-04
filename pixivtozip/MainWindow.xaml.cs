@@ -29,12 +29,17 @@ namespace PixivToZip
         {
             InitializeComponent();
 
+            appRun();
+        }
+
+        private async void appRun()
+        {
             viewLogOut();
             loadSetting();
 
             if (checkLogInInfo())
             {
-                logIn();
+                await logIn();
             }
         }
 
