@@ -115,21 +115,30 @@ namespace PixivToZip
 
         private async Task logIn()
         {
+            writeProgress(tbUserId.Text + "としてログイン中...");
+
             pixivHelper = new PixivHelper();
             bool result = await pixivHelper.logIn(tbUserId.Text, tbPassword.Text);
 
             if (result)
             {
-                System.Windows.MessageBox.Show("ログイン成功");
+                writeProgress("ログイン成功");
                 saveSetting();
                 viewLogIn();
             }
-            else { System.Windows.MessageBox.Show("ログイン失敗"); }
+            else
+            { writeProgress("ログイン失敗"); }
         }
 
         private async void btnDownload_Click(object sender, RoutedEventArgs e)
         {
             disableAllContext();
+
+            writeProgress(string.Format("{0}の情報を取得中...", tbId.Text));
+
+            string pictureTitle = await pixivHelper.getPicturesTitle(tbId.Text);
+
+            writeProgress(string.Format("{0}をダウンロード中...", pictureTitle));
 
             string folderPath = tbFolder.Text;
 
@@ -137,13 +146,15 @@ namespace PixivToZip
 
             string zipName = dirPath.Split('\\').Last() + ".zip";
 
-            if(cbZip.IsChecked==true)
+            if (cbZip.IsChecked == true)
             {
                 ZipFile.CreateFromDirectory(dirPath, folderPath + @"\" + zipName);
-                Directory.Delete(dirPath,true);
+                Directory.Delete(dirPath, true);
             }
 
             saveSetting();
+
+            writeProgress("ダウンロード完了");
 
             viewLogIn();
         }
@@ -158,6 +169,11 @@ namespace PixivToZip
                 tbFolder.Text = fbd.SelectedPath;
                 saveSetting();
             }
+        }
+
+        private void writeProgress(string message)
+        {
+            tbProgress.Text += message + "\r\n";
         }
     }
 }

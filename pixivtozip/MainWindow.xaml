@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PixivToZip"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="260" ResizeMode="NoResize" ShowInTaskbar="False" Topmost="True" WindowStyle="ToolWindow">
+        Title="MainWindow" Height="250" Width="400" ResizeMode="NoResize" ShowInTaskbar="False" Topmost="True" WindowStyle="ToolWindow">
     <Grid>
         <TextBox x:Name="tbUserId" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Margin="75,14,0,0" RenderTransformOrigin="0.474,1.255"/>
         <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Margin="75,45,0,0"/>
@@ -19,6 +19,7 @@
         <Label x:Name="lblFolder" Content="Folder" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,147,0,0"/>
         <TextBox x:Name="tbFolder" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.567,4.435" Margin="75,148,0,0"/>
         <Button x:Name="btnFolder" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Margin="214,148,0,0" RenderTransformOrigin="-0.65,0.65" Height="23" Click="btnFolder_Click"/>
+        <TextBox x:Name="tbProgress" HorizontalAlignment="Left" Height="182" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Margin="239,14,0,0"/>
 
     </Grid>
 </Window>
