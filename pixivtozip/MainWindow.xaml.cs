@@ -29,6 +29,8 @@ namespace PixivToZip
         {
             InitializeComponent();
 
+            tbProgress.IsReadOnly = true;
+
             appRun();
         }
 
@@ -127,7 +129,10 @@ namespace PixivToZip
                 viewLogIn();
             }
             else
-            { writeProgress("ログイン失敗"); }
+            {
+                writeProgress("ログイン失敗");
+                viewLogOut();
+            }
         }
 
         private async void btnDownload_Click(object sender, RoutedEventArgs e)
@@ -148,6 +153,8 @@ namespace PixivToZip
 
             if (cbZip.IsChecked == true)
             {
+                if (File.Exists(folderPath + @"\" + zipName))
+                { File.Delete(folderPath + @"\" + zipName); }
                 ZipFile.CreateFromDirectory(dirPath, folderPath + @"\" + zipName);
                 Directory.Delete(dirPath, true);
             }
