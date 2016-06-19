@@ -43,7 +43,7 @@ namespace PixivToZip
             return path;
         }
 
-        private async Task<string> getPicturesTitle(string id)
+        public async Task<string> getPicturesTitle(string id)
         {
             Task<string> task = Task.Run(() =>
             {
