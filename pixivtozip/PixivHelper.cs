@@ -15,7 +15,7 @@ namespace PixivToZip
     {
         OAuth oauth;
 
-        public async Task<bool> logIn(string username, string password)
+        public async Task<bool> LogIn(string username, string password)
         {
             oauth = new OAuth();
             var task = oauth.authAsync(username, password);

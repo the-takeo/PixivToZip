@@ -14,7 +14,7 @@
         <Button x:Name="btnLogIn" Content="LogIn" HorizontalAlignment="Left" VerticalAlignment="Top" Width="159" Margin="75,72,0,0" Click="btnLogIn_Click"/>
         <Label x:Name="lblId" Content="ID" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,116,0,0"/>
         <TextBox x:Name="tbId" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Margin="75,120,0,0"/>
-        <Button x:Name="btnDownload" Content="ToZip" HorizontalAlignment="Left" VerticalAlignment="Top" Width="108" Margin="126,176,0,0" Click="btnDownload_Click"/>
+        <Button x:Name="btnDownload" Content="Download" HorizontalAlignment="Left" VerticalAlignment="Top" Width="108" Margin="126,176,0,0" Click="btnDownload_Click"/>
         <CheckBox x:Name="cbZip" Content="Zip" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="75,179,0,0" RenderTransformOrigin="2.865,4.467"/>
         <Label x:Name="lblFolder" Content="Folder" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,147,0,0"/>
         <TextBox x:Name="tbFolder" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" RenderTransformOrigin="0.567,4.435" Margin="75,148,0,0"/>

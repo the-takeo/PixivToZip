@@ -120,7 +120,7 @@ namespace PixivToZip
             writeProgress(tbUserId.Text + "としてログイン中...");
 
             pixivHelper = new PixivHelper();
-            bool result = await pixivHelper.logIn(tbUserId.Text, tbPassword.Text);
+            bool result = await pixivHelper.LogIn(tbUserId.Text, tbPassword.Text);
 
             if (result)
             {
@@ -137,31 +137,45 @@ namespace PixivToZip
 
         private async void btnDownload_Click(object sender, RoutedEventArgs e)
         {
+            if (Directory.Exists(tbFolder.Text) == false)
+            {
+                writeProgress(string.Format("{0}が存在しません", tbFolder.Text));
+                return;
+            }
+
             disableAllContext();
 
             writeProgress(string.Format("{0}の情報を取得中...", tbId.Text));
 
             string pictureTitle = await pixivHelper.getPicturesTitle(tbId.Text);
 
-            writeProgress(string.Format("{0}をダウンロード中...", pictureTitle));
-
-            string folderPath = tbFolder.Text;
-
-            string dirPath = await pixivHelper.DownloadPicturesAsync(tbId.Text, folderPath);
-
-            string zipName = dirPath.Split('\\').Last() + ".zip";
-
-            if (cbZip.IsChecked == true)
+            if (pictureTitle != null)
             {
-                if (File.Exists(folderPath + @"\" + zipName))
-                { File.Delete(folderPath + @"\" + zipName); }
-                ZipFile.CreateFromDirectory(dirPath, folderPath + @"\" + zipName);
-                Directory.Delete(dirPath, true);
+
+                writeProgress(string.Format("{0}をダウンロード中...", pictureTitle));
+
+                string folderPath = tbFolder.Text;
+
+                string dirPath = await pixivHelper.DownloadPicturesAsync(tbId.Text, folderPath);
+
+                string zipName = dirPath.Split('\\').Last() + ".zip";
+
+                if (cbZip.IsChecked == true)
+                {
+                    if (File.Exists(folderPath + @"\" + zipName))
+                    { File.Delete(folderPath + @"\" + zipName); }
+                    ZipFile.CreateFromDirectory(dirPath, folderPath + @"\" + zipName);
+                    Directory.Delete(dirPath, true);
+                }
+
+                saveSetting();
+
+                writeProgress("ダウンロード完了");
             }
-
-            saveSetting();
-
-            writeProgress("ダウンロード完了");
+            else
+            {
+                writeProgress(string.Format("{0}の情報取得に失敗しました", tbId.Text));
+            }
 
             viewLogIn();
         }
@@ -180,7 +194,9 @@ namespace PixivToZip
 
         private void writeProgress(string message)
         {
-            tbProgress.Text += message + "\r\n";
+            tbProgress.AppendText(message + Environment.NewLine);
+            tbProgress.Focus();
+            tbProgress.ScrollToEnd();
         }
     }
 }
