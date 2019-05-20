@@ -127,7 +127,7 @@ namespace PixivToZip
             Dictionary<string, object> req_header = new Dictionary<string, object>
             {
                 {"Referer","http://spapi.pixiv.net/" },//header
-                {"UserAgent","PixivIOSApp/5.8.3" }
+                {"User-Agent","PixivIOSApp/5.8.7" }
             };
             
             if (user != null) req_header.Add("Authorization", ("Bearer " + user.access_token));
