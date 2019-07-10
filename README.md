@@ -1,5 +1,5 @@
 # PixivToZip
-Download pictures from Pixiv and alose can zip.
+Download pictures from Pixiv and also can zip.
 
 Because I excluded `ClientId` class,you cannot find the following property.
 
